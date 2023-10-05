@@ -2,7 +2,7 @@
 # VS code orkspace
 .code-workspace
 /.code-workspace
-/01-first-app.code-workspace
+./01-first-app.code-workspace
 
 
 # dependencies
