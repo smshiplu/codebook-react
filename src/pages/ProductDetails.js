@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import {useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { BsPlusLg } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { useDocTitle } from "../hooks/useDocTitle";
 
 import { Rating } from "../components";
