@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDocTitle } from "../hooks/useDocTitle";
 import { register } from "../services";
+
 export const Register = () => {
   useDocTitle("Registration");
   const navigate = useNavigate();
