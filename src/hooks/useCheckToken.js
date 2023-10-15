@@ -7,21 +7,28 @@ export const useCheckToken = () => {
   useEffect(() => {
     if(token) {
       const decodedJwt = JSON.parse(window.atob(token.split(".")[1]));
+ 
       if(decodedJwt.exp * 1000 < Date.now()) {
         setIsTokenExpired(true);
       } else {
         setIsTokenExpired(false);
       }
+      
+      setTimeout(() => {
+        setIsTokenExpired(true);
+        if(isTokenExpired) {
+          sessionStorage.removeItem("token");
+          sessionStorage.removeItem("cbid");
+        }
+      }, decodedJwt.exp);
 
     } else {
       setIsTokenExpired(true);
     }
+
   }, [isTokenExpired, token]);
 
-  // if(isTokenExpired) {
-  //   sessionStorage.removeItem("token");
-  //   sessionStorage.removeItem("cbid");
-  // }
+
   
   return isTokenExpired;
 }
