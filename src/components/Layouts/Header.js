@@ -14,8 +14,12 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState( JSON.parse(localStorage.getItem("codeBook-darkMode")) || false);
   const [searchSection, setSearchSection] = useState(false);
   const [dorpDown, setDropDown] = useState(false);
-  // const [isTokenExpired, setIsTokenExpired] = useState(useCheckToken());
-  const isTokenExpired = useCheckToken();
+  const token = useCheckToken();
+  const [isTokenExpired, setIsTokenExpired] = useState(token);
+
+  useEffect(() => {
+    token ? setIsTokenExpired(true) : setIsTokenExpired(false);
+  }, [token]);
 
   useEffect(() => {
     if(darkMode) {

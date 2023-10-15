@@ -18,10 +18,10 @@ export const useCheckToken = () => {
     }
   }, [isTokenExpired, token]);
 
-  if(isTokenExpired) {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("cbid");
-  }
+  // if(isTokenExpired) {
+  //   sessionStorage.removeItem("token");
+  //   sessionStorage.removeItem("cbid");
+  // }
   
   return isTokenExpired;
 }
