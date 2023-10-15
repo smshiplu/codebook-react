@@ -20,7 +20,7 @@ export const useCheckToken = () => {
           sessionStorage.removeItem("token");
           sessionStorage.removeItem("cbid");
         }
-      }, decodedJwt.exp);
+      }, decodedJwt.exp * 1000);
 
     } else {
       setIsTokenExpired(true);
