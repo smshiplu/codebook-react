@@ -61,7 +61,7 @@ export const FilterProvider = ({children}) => {
   const value = {
     state,
     dispatch,
-    productList: filteredProductList,
+    productList: (state.bestSellerOnly || state.sortBy || state.ratings || state.inStockOnly) ? filteredProductList : state.productList.sort((a, b) => a.id - b.id),
     initialProducts
   };
 
