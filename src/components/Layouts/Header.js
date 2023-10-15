@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaMoon, FaSearch } from "react-icons/fa";
 import {BsCartFill, BsPersonCircle, BsSun} from "react-icons/bs";
-import { useCheckToken } from "../../hooks/useCheckToken";
+import { useCheckToken } from "../../hooks";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 import { useCart } from "../../context";
@@ -14,8 +14,8 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState( JSON.parse(localStorage.getItem("codeBook-darkMode")) || false);
   const [searchSection, setSearchSection] = useState(false);
   const [dorpDown, setDropDown] = useState(false);
-  const token = useCheckToken();
-
+  // const [isTokenExpired, setIsTokenExpired] = useState(useCheckToken());
+  const isTokenExpired = useCheckToken();
 
   useEffect(() => {
     if(darkMode) {
@@ -46,7 +46,7 @@ export const Header = () => {
                   <BsCartFill className="cursor-pointer text-xl whitespace-nowrap text-gray-700 hover:text-gray-800 dark:text-white mr-5"/>
                 </Link>
                 <BsPersonCircle onClick={() => setDropDown(!dorpDown)} className="cursor-pointer text-xl whitespace-nowrap text-gray-700 hover:text-gray-800 dark:text-white"/>
-                {dorpDown && (token ? <DropdownLoggedOut setDropDown={setDropDown} />  :  <DropdownLoggedIn setDropDown={setDropDown} />)}
+                {dorpDown && (isTokenExpired ? <DropdownLoggedOut setDropDown={setDropDown} />  :  <DropdownLoggedIn setDropDown={setDropDown} />)}
               </div>
           </div>
       </nav>
