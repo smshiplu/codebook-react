@@ -1,34 +1,30 @@
 import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+
 export const useCheckToken = () => {
 
   const token = JSON.parse(sessionStorage.getItem("token"));
+  const cbid = JSON.parse(sessionStorage.getItem("cbid"));
   const [isTokenExpired, setIsTokenExpired] = useState(false);
 
   useEffect(() => {
     if(token) {
-      const decodedJwt = JSON.parse(window.atob(token.split(".")[1]));
- 
-      if(decodedJwt.exp * 1000 < Date.now()) {
-        setIsTokenExpired(true);
-      } else {
-        setIsTokenExpired(false);
-      }
+      const decodedJwt = jwtDecode(token);
       
-      setTimeout(() => {
+      if(decodedJwt.exp * 1000 < new Date().getTime()) {
         setIsTokenExpired(true);
-        if(isTokenExpired) {
-          sessionStorage.removeItem("token");
-          sessionStorage.removeItem("cbid");
-        }
-      }, decodedJwt.exp * 1000);
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("cbid");
+      } else {
+        cbid === parseInt(decodedJwt.sub) ? setIsTokenExpired(false) : setIsTokenExpired(true);
+      }
 
     } else {
       setIsTokenExpired(true);
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("cbid");
     }
+  }, [isTokenExpired, token, cbid]);
 
-  }, [isTokenExpired, token]);
-
-
-  
   return isTokenExpired;
 }

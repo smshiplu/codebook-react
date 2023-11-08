@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/vscode_workspace
+/vscode-workspace
 /works
 /data-temp
 /node_modules
