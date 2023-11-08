@@ -15,6 +15,7 @@ export const Header = () => {
   const [searchSection, setSearchSection] = useState(false);
   const [dorpDown, setDropDown] = useState(false);
   const token = useCheckToken();
+  console.log(token);
   const [isTokenExpired, setIsTokenExpired] = useState(token);
 
   useEffect(() => {
