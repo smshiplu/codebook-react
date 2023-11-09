@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-<<<<<<< HEAD
-=======
-
-export const useCheckToken = () => {
->>>>>>> main
 
 export const useCheckToken = () => {
   
@@ -20,10 +15,6 @@ export const useCheckToken = () => {
         setIsTokenExpired(true);
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("cbid");
-<<<<<<< HEAD
-=======
-        
->>>>>>> main
       } else {
         cbid === parseInt(decodedJwt.sub) ? setIsTokenExpired(false) : setIsTokenExpired(true);
       }
