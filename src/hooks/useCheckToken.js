@@ -10,7 +10,7 @@ export const useCheckToken = () => {
   useEffect(() => {
     if(token) {
       const decodedJwt = jwtDecode(token);
-      console.log(decodedJwt);
+      
       if(decodedJwt.exp * 1000 < new Date().getTime()) {
         setIsTokenExpired(true);
         sessionStorage.removeItem("token");
