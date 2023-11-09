@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaMoon, FaSearch } from "react-icons/fa";
 import {BsCartFill, BsPersonCircle, BsSun} from "react-icons/bs";
+
 import { useCheckToken } from "../../hooks";
+
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 import { useCart } from "../../context";
@@ -17,7 +19,7 @@ export const Header = () => {
   const token = useCheckToken();
   console.log(token);
   const [isTokenExpired, setIsTokenExpired] = useState(token);
-
+  
   useEffect(() => {
     token ? setIsTokenExpired(true) : setIsTokenExpired(false);
   }, [token]);
