@@ -22,8 +22,7 @@ export const Header = () => {
   useEffect(() => {
     token ? setIsTokenExpired(true) : setIsTokenExpired(false);
   }, [token]);
-  console.log(isTokenExpired);
-  
+
   useEffect(() => {
     if(darkMode) {
       localStorage.setItem("codeBook-darkMode", JSON.stringify(darkMode));
