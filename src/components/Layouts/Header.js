@@ -17,12 +17,13 @@ export const Header = () => {
   const [searchSection, setSearchSection] = useState(false);
   const [dorpDown, setDropDown] = useState(false);
   const token = useCheckToken();
-  const [isTokenExpired, setIsTokenExpired] = useState(false);
-
+  const [isTokenExpired, setIsTokenExpired] = useState(token);
+  
   useEffect(() => {
     token ? setIsTokenExpired(true) : setIsTokenExpired(false);
   }, [token]);
-
+  console.log(isTokenExpired);
+  
   useEffect(() => {
     if(darkMode) {
       localStorage.setItem("codeBook-darkMode", JSON.stringify(darkMode));
