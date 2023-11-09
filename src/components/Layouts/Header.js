@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaMoon, FaSearch } from "react-icons/fa";
 import {BsCartFill, BsPersonCircle, BsSun} from "react-icons/bs";
+
 import { useCheckToken } from "../../hooks";
+
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 import { useCart } from "../../context";
@@ -15,7 +17,7 @@ export const Header = () => {
   const [searchSection, setSearchSection] = useState(false);
   const [dorpDown, setDropDown] = useState(false);
   const token = useCheckToken();
-  const [isTokenExpired, setIsTokenExpired] = useState(token);
+  const [isTokenExpired, setIsTokenExpired] = useState(false);
 
   useEffect(() => {
     token ? setIsTokenExpired(true) : setIsTokenExpired(false);
